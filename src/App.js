@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+
 import './App.css';
+import Weather from './Weather';
 
 class App extends React.Component {
 
@@ -47,6 +49,12 @@ class App extends React.Component {
         })
 
       }
+
+     
+    }
+
+    renderDateDescription = (element)=> {
+
     }
 
 
@@ -57,7 +65,7 @@ class App extends React.Component {
 
           <form onSubmit={this.updateLocation}>
 
-            <input type='text' placeholder='Enter a city name' onChange={this.updateCityName} />
+            <input type='text' placeholder='Enter a city name' onChange={this.updateCityName}  />
             <input type='submit' value='Get Location' />
 
             {/* <button onClick={this.updateCityName} /> */}
@@ -78,6 +86,10 @@ class App extends React.Component {
           {this.state.errorMessage &&
             <p>error in receving the data</p>
           }
+
+          <Weather renderDateDescription={this.renderDateDescription} searchedCity={this.state.searchedCity} lat={this.state.chosenCity.lat} lon={this.state.chosenCity.lon}  />
+
+          
 
           {/* 
         <Form>
