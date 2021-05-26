@@ -15,7 +15,8 @@ class App extends React.Component {
       chosenCity: '',
       displayMap: false,
       errorMessage: false,
-      cityData: []
+      cityData: [],
+      movieData: []
     }
   }
 
@@ -58,10 +59,24 @@ class App extends React.Component {
 
   }
 
+  // getWeatherData = async () => {
+  //   let serverRoute = process.env.REACT_APP_SERVER;
+        
+  //   const url = `${serverRoute}/weather?city_name=${this.state.searchedCity}`;
+
+  //   // console.log(url);
+  //   const cityItem = await axios.get(url);
+  //   console.log(cityItem.data);
+  //   this.setState({
+  //     cityData: cityItem.data
+  //   })
+
+
+  // }
   getWeatherData = async () => {
     let serverRoute = process.env.REACT_APP_SERVER;
         
-    const url = `${serverRoute}/weather?city_name=${this.state.searchedCity}`;
+    const url = `${serverRoute}/weather?city=${this.state.searchedCity}`;
 
     // console.log(url);
     const cityItem = await axios.get(url);
@@ -71,6 +86,18 @@ class App extends React.Component {
     })
 
 
+  }
+  getMoviesData = async () =>{
+    let serverRoute = process.env.REACT_APP_SERVER;
+
+    const urlMovie = `${serverRoute}/movies?query=${this.state.searchedCity}`
+
+    const movieItem = await axios.get(urlMovie)
+
+    this.setState({
+      movieData: movieItem.data
+
+    })
   }
 
 
@@ -103,8 +130,8 @@ class App extends React.Component {
         {this.state.errorMessage &&
           <p>error in receving the data</p>
         }
-
-        {this.state.cityData.map((item, idx) => {
+         {/* lab07 */}
+        {/* {this.state.cityData.map((item, idx) => {
           return (
             <Weather
               key={idx}
@@ -114,9 +141,40 @@ class App extends React.Component {
             />
           )
         })
-        }
+        } */}
 
         {/* <Weather cityData={this.state.cityData}/> */}
+
+        {this.state.cityData.map((item, idx) => {
+          return (
+            <Weather
+              key={idx}
+              date={item.date}
+              description={item.descrption}
+
+            />
+          )
+        })
+        }
+
+        
+
+        {this.state.movieData.map((item, idx) => {
+          return (
+            <Weather
+              key={idx}
+              original_title={item.original_title}
+              overview={item.overview}
+              vote_average={item.vote_average}
+              vote_count={item.vote_count}
+              poster_path={item.poster_path}
+              popularity={item.popularity}
+              release_date={item.release_date}
+
+            />
+          )
+        })
+        }
 
 
 
