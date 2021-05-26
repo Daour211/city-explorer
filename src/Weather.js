@@ -66,12 +66,21 @@ class Weather extends React.Component {
             //     })
             //     }
             // </>
-
+            // lab07+8
             <>
-
+                <div>
                 <p> {this.props.date}  </p>
-                <p>{this.props.description}</p>
+                <p>{this.props.description}</p>       
+                </div>
+                <p> {this.props.original_title}  </p>
+                <p>{this.props.overview}</p>
+                <p> {this.props.vote_average}  </p>
+                <p>{this.props.vote_count}</p>
+                <p> {this.props.poster_path}  </p>
+                <p>{this.props.popularity}</p>
+                <p>{this.props.release_date}</p>
             </>
+
         )
     }
 
