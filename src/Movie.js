@@ -12,6 +12,7 @@ class Movie extends React.Component {
                 <img src={this.props.poster_path}/>
                 <p>{this.props.popularity}</p>
                 <p>{this.props.release_date}</p>
+                
             </>
 
         )

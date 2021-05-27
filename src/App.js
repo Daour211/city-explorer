@@ -76,9 +76,9 @@ class App extends React.Component {
   // }
   getWeatherData = async () => {
 
-    // let serverRoute = process.env.REACT_APP_SERVER;
+    let serverRoute = process.env.REACT_APP_SERVER;
 
-    const url = `http://localhost:3001/weather?city=${this.state.searchedCity}`;
+    const url = `${serverRoute}/weather?city=${this.state.searchedCity}`;
 
     // console.log(url);
     const cityItem = await axios.get(url);
@@ -90,9 +90,9 @@ class App extends React.Component {
 
   }
   getMoviesData = async () =>{
-    // let serverRoute = process.env.REACT_APP_SERVER;
+    let serverRoute = process.env.REACT_APP_SERVER;
 
-    const urlMovie = `http://localhost:3001/movies?query=${this.state.searchedCity}`
+    const urlMovie = `${serverRoute}/movies?query=${this.state.searchedCity}`
 
     const movieItem = await axios.get(urlMovie)
 
