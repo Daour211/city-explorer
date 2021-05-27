@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './App.css';
 import Weather from './Weather';
+import Movie from './Movie';
 // import dotenv from './dotenv';
 // require('dotenv').config();
 
@@ -56,7 +57,7 @@ class App extends React.Component {
 
     }
     this.getWeatherData();
-
+    this.getMoviesData();
   }
 
   // getWeatherData = async () => {
@@ -74,9 +75,10 @@ class App extends React.Component {
 
   // }
   getWeatherData = async () => {
-    let serverRoute = process.env.REACT_APP_SERVER;
-        
-    const url = `${serverRoute}/weather?city=${this.state.searchedCity}`;
+
+    // let serverRoute = process.env.REACT_APP_SERVER;
+
+    const url = `http://localhost:3001/weather?city=${this.state.searchedCity}`;
 
     // console.log(url);
     const cityItem = await axios.get(url);
@@ -88,9 +90,9 @@ class App extends React.Component {
 
   }
   getMoviesData = async () =>{
-    let serverRoute = process.env.REACT_APP_SERVER;
+    // let serverRoute = process.env.REACT_APP_SERVER;
 
-    const urlMovie = `${serverRoute}/movies?query=${this.state.searchedCity}`
+    const urlMovie = `http://localhost:3001/movies?query=${this.state.searchedCity}`
 
     const movieItem = await axios.get(urlMovie)
 
@@ -145,9 +147,12 @@ class App extends React.Component {
 
         {/* <Weather cityData={this.state.cityData}/> */}
 
+        {/* <Weather weatherData={this.state.cityData}/>  */}
+
         {this.state.cityData.map((item, idx) => {
           return (
             <Weather
+
               key={idx}
               date={item.date}
               description={item.descrption}
@@ -161,7 +166,7 @@ class App extends React.Component {
 
         {this.state.movieData.map((item, idx) => {
           return (
-            <Weather
+            <Movie
               key={idx}
               original_title={item.original_title}
               overview={item.overview}
